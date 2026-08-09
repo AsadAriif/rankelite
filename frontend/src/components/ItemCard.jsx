@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Award, ArrowUpRight, Split, Check, ExternalLink, Globe, ShieldCheck, Edit3, X, Save } from 'lucide-react';
+import { Crown, Trophy, Heart, MapPin, Award, ArrowUpRight, Split, Check, ExternalLink, Globe, ShieldCheck, Edit3, X, Save } from 'lucide-react';
 import { formatFieldValue } from '../utils/formatters';
 import { favoriteService, itemService } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useCompare } from '../context/CompareContext';
+
 
 const ItemCard = ({ item: initialItem, onUpdate }) => {
   const { user, isAdmin } = useAuth();
