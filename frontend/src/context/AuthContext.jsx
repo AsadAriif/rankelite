@@ -35,23 +35,6 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
-  const loginAsAdmin = async () => {
-    try {
-      const res = await authService.login({
-        email: 'admin@eliterank.com',
-        password: 'AdminPassword123!'
-      });
-      if (res.success) {
-        localStorage.setItem('eliterank_token', res.token);
-        setUser(res.user);
-        window.location.href = '/admin';
-      }
-    } catch (err) {
-      console.error('Admin quick login:', err);
-      window.location.href = '/login';
-    }
-  };
-
   const register = async (userData) => {
     const res = await authService.register(userData);
     if (res.success) {
@@ -64,14 +47,14 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('eliterank_token');
     setUser(null);
+    window.location.href = '/';
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, loginAsAdmin, register, logout, isAdmin: user?.role === 'admin' }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, isAdmin: user?.role === 'admin' }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => useContext(AuthContext);
-

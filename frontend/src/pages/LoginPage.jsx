@@ -91,29 +91,6 @@ const LoginPage = () => {
             </div>
           </div>
 
-          {/* Preset Quick Login buttons for testing ease */}
-          <div className="pt-2">
-            <span className="block text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-2 text-center">
-              Quick Test Passwords:
-            </span>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <button
-                type="button"
-                onClick={() => { setEmail('admin@eliterank.com'); setPassword('Admin123!'); }}
-                className="p-2 rounded-lg bg-[#181818] border border-gray-800 text-gray-300 hover:border-[#D4AF37]"
-              >
-                Autofill Admin
-              </button>
-              <button
-                type="button"
-                onClick={() => { setEmail('user@eliterank.com'); setPassword('User123!'); }}
-                className="p-2 rounded-lg bg-[#181818] border border-gray-800 text-gray-300 hover:border-[#D4AF37]"
-              >
-                Autofill Member
-              </button>
-            </div>
-          </div>
-
           <button
             type="submit"
             disabled={loading}
@@ -123,6 +100,7 @@ const LoginPage = () => {
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
+
 
         <div className="mt-8 text-center text-xs text-gray-400">
           <span>Don't have a VIP membership yet? </span>

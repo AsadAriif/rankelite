@@ -141,14 +141,16 @@ const Navbar = ({ onOpenSearch }) => {
               <span>Saved VIP</span>
             </Link>
 
-            {/* Admin Panel Direct Link */}
-            <Link
-              to="/admin"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#2E1065] text-purple-200 hover:text-white border border-purple-500/40 text-xs font-extrabold tracking-wide hover:shadow-purple-glow transition-all"
-            >
-              <Shield className="w-3.5 h-3.5 text-[#A78BFA]" />
-              <span>Admin Panel</span>
-            </Link>
+            {/* Admin Panel Link — ONLY visible when logged in as Admin */}
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl bg-[#2E1065] text-purple-200 hover:text-white border border-purple-500/40 text-xs font-extrabold tracking-wide hover:shadow-purple-glow transition-all"
+              >
+                <Shield className="w-3.5 h-3.5 text-[#A78BFA]" />
+                <span>Admin Console</span>
+              </Link>
+            )}
           </div>
 
           {/* Action Right Area */}
@@ -160,38 +162,35 @@ const Navbar = ({ onOpenSearch }) => {
 
             {user ? (
               <div className="flex items-center space-x-3">
-                <Link to="/admin" className="flex items-center space-x-2 bg-[#F5F3FF] p-1.5 pr-4 rounded-full border border-[#7C3AED]/30">
-                  <img src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'} alt="" className="w-7 h-7 rounded-full object-cover" />
-                  <span className="text-xs font-bold text-gray-800">{user.name}</span>
-                </Link>
-                <button onClick={logout} title="Sign Out" className="p-2 rounded-full text-gray-500 hover:text-red-500">
+                {isAdmin ? (
+                  <Link to="/admin" className="flex items-center space-x-2 bg-[#F5F3FF] p-1.5 pr-4 rounded-full border border-[#7C3AED]/30">
+                    <img src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'} alt="" className="w-7 h-7 rounded-full object-cover" />
+                    <span className="text-xs font-bold text-gray-800">{user.name} (Admin)</span>
+                  </Link>
+                ) : (
+                  <div className="flex items-center space-x-2 bg-[#F5F3FF] p-1.5 pr-4 rounded-full border border-[#7C3AED]/30">
+                    <img src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'} alt="" className="w-7 h-7 rounded-full object-cover" />
+                    <span className="text-xs font-bold text-gray-800">{user.name}</span>
+                  </div>
+                )}
+                <button onClick={logout} title="Sign Out" className="p-2 rounded-full text-gray-500 hover:text-red-500 transition-colors">
                   <LogOut className="w-4 h-4" />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => {
-                    if (loginAsAdmin) loginAsAdmin();
-                    else window.location.href = '/admin';
-                  }}
-                  className="px-3.5 py-2 rounded-full bg-[#181818] text-[#FFD700] text-xs font-extrabold border border-[#D4AF37]/50 hover:bg-black transition-all"
-                  title="Quick VIP Admin Dashboard Access"
-                >
-                  ⚡ Admin Mode
-                </button>
-                <Link to="/login" className="px-5 py-2.5 rounded-full btn-purple-action text-xs uppercase tracking-wider">
-                  VIP Login
-                </Link>
-              </div>
+              <Link to="/login" className="px-5 py-2.5 rounded-full btn-purple-action text-xs uppercase tracking-wider">
+                Sign In
+              </Link>
             )}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center space-x-2">
-            <Link to="/admin" className="p-2 rounded-xl bg-[#2E1065] text-purple-200 border border-purple-500/40 text-xs font-bold">
-              <Shield className="w-4 h-4" />
-            </Link>
+            {isAdmin && (
+              <Link to="/admin" className="p-2 rounded-xl bg-[#2E1065] text-purple-200 border border-purple-500/40 text-xs font-bold">
+                <Shield className="w-4 h-4" />
+              </Link>
+            )}
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2.5 rounded-xl bg-[#F5F3FF] text-[#7C3AED] border border-[#7C3AED]/30">
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -205,9 +204,12 @@ const Navbar = ({ onOpenSearch }) => {
         <div ref={mobileMenuRef} className="lg:hidden bg-white border-b border-[#7C3AED]/30 px-6 py-6 space-y-4 shadow-2xl">
           <Link to="/" onClick={() => setMobileMenuOpen(false)} className="mobile-menu-item block text-sm font-bold text-gray-800">Home</Link>
           
-          <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="mobile-menu-item block p-3 rounded-xl bg-[#2E1065] text-purple-200 font-extrabold text-xs">
-            🛡️ Admin Panel & 100-Item Batch Manager
-          </Link>
+          {isAdmin && (
+            <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="mobile-menu-item block p-3 rounded-xl bg-[#2E1065] text-purple-200 font-extrabold text-xs">
+              🛡️ Admin Console
+            </Link>
+          )}
+
 
           <div className="space-y-2 pt-2 border-t border-gray-100">
             <span className="mobile-menu-item text-[10px] uppercase tracking-widest text-[#7C3AED] font-black block">Explore 100 Sectors</span>
