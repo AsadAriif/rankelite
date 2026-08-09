@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FAFAFC;
+  --bg-card: #FFFFFF;
+  --text-dark: #0A0A12;
+  --purple-royal: #7C3AED;
+  --purple-deep: #4C1D95;
+  --purple-dark: #2E1065;
+  --emerald-green: #059669;
+  --emerald-dark: #064E3B;
+  --emerald-light: #10B981;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FAFAFC;
+  color: #0A0A12;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(124, 58, 237, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 90% 35%, rgba(5, 150, 105, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(76, 29, 149, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #FAFAFC 0%, #F5F3FF 35%, #F0FDF4 70%, #FAFAFC 100%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, .font-serif-luxury {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  color: #0A0A12;
+}
+
+/* Custom Royal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F5F8;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7C3AED 0%, #4C1D95 50%, #064E3B 100%);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8B5CF6 0%, #6D28D9 50%, #059669 100%);
+}
+
+/* Royal Purple Metallic Gradient Text */
+.purple-gradient-text, .regal-purple-text {
+  background: linear-gradient(135deg, #2E1065 0%, #4C1D95 25%, #7C3AED 60%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(124, 58, 237, 0.22));
+}
+
+/* Emerald Dark Green Metallic Gradient Text */
+.emerald-gradient-text, .regal-emerald-text {
+  background: linear-gradient(135deg, #022C22 0%, #064E3B 30%, #059669 65%, #34D399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(5, 150, 105, 0.22));
+}
+
+/* Dual Purple-Emerald Luxury Blend */
+.purple-emerald-gradient {
+  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 45%, #059669 85%, #064E3B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Luxury Surfaces */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.25);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.glass-surface {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.06);
+}
+
+/* Ultra-Tall Premium Category Block with Enhanced Height */
+.category-hero-block {
+  min-height: 280px;
+  background: #FFFFFF;
+  border: 2px solid rgba(124, 58, 237, 0.25);
+  box-shadow: 0 20px 50px -10px rgba(76, 29, 149, 0.12), 0 4px 18px rgba(6, 78, 59, 0.08);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-hero-block:hover {
+  border-color: #7C3AED;
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 28px 65px -12px rgba(124, 58, 237, 0.28), 0 8px 25px rgba(5, 150, 105, 0.15);
+}
+
+/* Luxury HUD Cards with Smooth Light Sweep Animation */
+.hud-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  box-shadow: 0 14px 40px -8px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(6, 78, 59, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hud-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -140%; width: 70%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.15), rgba(5, 150, 105, 0.15), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.95s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hud-card:hover::before {
+  left: 160%;
+}
+
+.hud-card:hover {
+  border-color: #7C3AED;
+  transform: translateY(-8px);
+  box-shadow: 0 24px 55px -10px rgba(124, 58, 237, 0.25), 0 6px 20px rgba(6, 78, 59, 0.12);
+}
+
+/* Royal Action Buttons */
+.btn-purple-action {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 45%, #6D28D9 80%, #4C1D95 100%);
+  color: #FFFFFF;
+  font-weight: 800;
+  transition: all 0.35s ease;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+  border: 1px solid #6D28D9;
+}
+.btn-purple-action:hover {
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.55);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-emerald-action {
+  background: linear-gradient(135deg, #34D399 0%, #10B981 35%, #059669 75%, #064E3B 100%);
+  color: #FFFFFF;
+  font-weight: 800;
+  transition: all 0.35s ease;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+  border: 1px solid #047857;
+}
+.btn-emerald-action:hover {
+  box-shadow: 0 10px 30px rgba(5, 150, 105, 0.55);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Winning Metric Winner Badge */
+.winner-badge {
+  background: linear-gradient(135deg, #064E3B 0%, #059669 60%, #10B981 100%);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Active Category Pill Tab Glow */
+.tab-pill.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 40%, #059669 85%, #064E3B 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45) !important;
+  border-color: #4C1D95 !important;
+  transform: scale(1.02);
+}
+
+
+/* Mask Reveal & Clip-Path Utilities */
+.clip-mask-hidden {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  opacity: 0;
+  will-change: clip-path, opacity, transform;
+}
+
+.clip-mask-visible {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  opacity: 1;
+}
+
+/* Level 1 Micro-Interactions: Links & Underlines */
+.link-editorial {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.link-editorial::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-editorial:hover::after {
+  width: 100%;
+}
+
+/* Level 1 Micro-Interactions: Buttons */
+.btn-micro-engineered {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.25s ease;
+  will-change: transform;
+}
+.btn-micro-engineered:hover {
+  transform: scale(1.015);
+}
+.btn-micro-engineered:active {
+  transform: scale(0.98);
+}
+
+/* Custom Luxury Pointer & Ring Cursor */
+@media (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Text Line Mask Wrapper */
+.text-line-wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+.text-line-child {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Smooth Image Scale Container */
+.cinematic-image-container {
+  overflow: hidden;
+  position: relative;
+  will-change: transform, clip-path;
+}
+
+.cinematic-image-target {
+  transform-origin: center center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter, opacity;
+}
+
+/* Mobile Motion Strategy: Simplify & Remove Parallax/Cursor */
+@media (max-width: 768px) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"] {
+    cursor: auto !important;
+  }
+
+  .hud-card:hover {
+    transform: none !important;
+  }
+
+  .category-hero-block:hover {
+    transform: none !important;
+  }
+}
+
+/* Accessible Reduced Motion Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .clip-mask-hidden {
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+  
+  .animate-aura,
+  .animate-float-slow,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+

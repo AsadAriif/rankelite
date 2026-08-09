@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EliteRank — The 100 Global Power, Luxury & Sports Rankings</title>
+  <meta name="description" content="Explore complete 100-tier verified rankings of 100 Football Clubs, 100 Billionaires, 100 Hypercars, 100 Universities, Smartphones, and Sports Titans.">
+
+  <!-- Ultra Luxury Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 Grid & Utilities -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#020204',
+            darkcore: '#07070b',
+            darkcard: '#0c0c14',
+            darksurface: '#12121e',
+            gold: {
+              100: '#FFFDEB',
+              200: '#FFF8C4',
+              300: '#FFE57F',
+              400: '#FFD700',
+              500: '#D4AF37',
+              600: '#B58A14',
+              700: '#8C6207',
+              800: '#593e03'
+            }
+          },
+          fontFamily: {
+            decorative: ['"Cinzel Decorative"', 'serif'],
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            syne: ['Syne', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-dark: #020204;
+      --gold-primary: #FFD700;
+      --gold-royal: #D4AF37;
+      --gold-deep: #8C6207;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 40%, rgba(255, 215, 0, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(181, 138, 20, 0.08) 0%, transparent 55%),
+        linear-gradient(180deg, #020204 0%, #06060a 50%, #020204 100%);
+      background-attachment: fixed;
+    }
+
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #020204; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #FFD700 0%, #D4AF37 50%, #443206 100%);
+      border-radius: 4px;
+    }
+
+    .liquid-gold {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF4B8 20%, #FFDF00 45%, #D4AF37 75%, #8C6207 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+    }
+
+    .glass-nav {
+      background: rgba(6, 6, 10, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+    }
+
+    .glass-surface {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(10, 10, 16, 0.9) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .hud-card {
+      background: linear-gradient(145deg, rgba(18, 18, 28, 0.8) 0%, rgba(8, 8, 12, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .hud-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -120%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 223, 0, 0.15), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.8s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hud-card:hover::before { left: 160%; }
+
+    .hud-card:hover {
+      border-color: rgba(255, 215, 0, 0.85);
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 25px 60px -15px rgba(212, 175, 55, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .glow-gold-box { box-shadow: 0 0 35px rgba(212, 175, 55, 0.35); }
+    .glow-gold-strong { box-shadow: 0 0 50px rgba(255, 215, 0, 0.55); }
+
+    .tab-pill.active {
+      background: linear-gradient(135deg, #FFF099 0%, #FFD700 35%, #D4AF37 75%, #8C6207 100%) !important;
+      color: #020204 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 0 28px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.7);
+      border-color: #FFFFFF !important;
+      transform: scale(1.05);
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 30s linear infinite;
+    }
+    .animate-marquee:hover { animation-play-state: paused; }
+
+    #nexus-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    .btn-gold-action {
+      background: linear-gradient(135deg, #FFF4A3 0%, #FFD700 35%, #D4AF37 75%, #996515 100%);
+      color: #000;
+      font-weight: 800;
+      transition: all 0.35s ease;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+    }
+    .btn-gold-action:hover {
+      box-shadow: 0 0 45px rgba(255, 215, 0, 0.7);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    @keyframes pulseAura {
+      0%, 100% { transform: scale(1); opacity: 0.75; }
+      50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 35px #FFD700); }
+    }
+    .animate-aura { animation: pulseAura 4.5s infinite ease-in-out; }
+  </style>
+</head>
+<body class="relative">
+  <canvas id="nexus-canvas"></canvas>
+
+  <div class="relative z-20 bg-[#050508] border-b border-[#D4AF37]/30 py-2.5 text-xs overflow-hidden">
+    <div class="animate-marquee whitespace-nowrap flex items-center space-x-12">
+      <div class="flex items-center space-x-8 text-gray-300">
+        <span class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-full bg-[#FFD700] animate-ping"></span><strong class="text-[#FFD700] font-syne">100 RANK VERIFIED INDEX:</strong></span>
+        <span>⚽ #1 Football: <strong class="text-white font-bold">Real Madrid CF (15 UCL Titles)</strong></span>
+        <span>⚽ #2 Football: <strong class="text-white font-bold">Manchester City FC ($5.1B)</strong></span>
+        <span>👑 #1 Billionaire: <strong class="text-white font-bold">Elon Musk ($240.5B)</strong></span>
+        <span>🏎️ #1 Hypercar: <strong class="text-white font-bold">Bugatti Tourbillon (1,800 HP)</strong></span>
+        <span>📱 #1 Mobile: <strong class="text-white font-bold">iPhone 15 Pro Max (3nm A17)</strong></span>
+        <span>🎓 #1 University: <strong class="text-white font-bold">Harvard University (1636)</strong></span>
+        <span>🏨 #1 Hotel: <strong class="text-white font-bold">Burj Al Arab Dubai ($24,000/nt)</strong></span>
+      </div>
+      <div class="flex items-center space-x-8 text-gray-300">
+        <span class="flex items-center space-x-2"><span class="w-2.5 h-2.5 rounded-full bg-[#FFD700] animate-ping"></span><strong class="text-[#FFD700] font-syne">100 RANK VERIFIED INDEX:</strong></span>
+        <span>⚽ #1 Football: <strong class="text-white font-bold">Real Madrid CF (15 UCL Titles)</strong></span>
+        <span>⚽ #2 Football: <strong class="text-white font-bold">Manchester City FC ($5.1B)</strong></span>
+        <span>👑 #1 Billionaire: <strong class="text-white font-bold">Elon Musk ($240.5B)</strong></span>
+        <span>🏎️ #1 Hypercar: <strong class="text-white font-bold">Bugatti Tourbillon (1,800 HP)</strong></span>
+        <span>📱 #1 Mobile: <strong class="text-white font-bold">iPhone 15 Pro Max (3nm A17)</strong></span>
+        <span>🎓 #1 University: <strong class="text-white font-bold">Harvard University (1636)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sticky top-0 z-50 glass-nav py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-3 text-decoration-none group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#D4AF37] via-[#FFD700] to-[#FFF4A3] p-[1.5px] glow-gold-box flex items-center justify-center">
+          <div class="w-full h-full bg-[#040407] rounded-[14px] flex items-center justify-center">
+            <i data-lucide="crown" class="w-6 h-6 text-[#FFD700] group-hover:rotate-12 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-serif text-2xl sm:text-3xl font-black tracking-widest liquid-gold">ELITE<span class="text-white">RANK</span></span>
+          <span class="block text-[9px] uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">THE 100 WORLD EXCELLENCE INDEX</span>
+        </div>
+      </a>
+
+      <div onclick="openSearchModal()" class="hidden md:flex items-center justify-between w-96 px-5 py-2.5 rounded-full bg-[#0b0b12]/90 border border-[#D4AF37]/40 text-gray-400 hover:border-[#FFD700] hover:shadow-[0_0_35px_rgba(212,175,55,0.35)] cursor-pointer transition-all">
+        <div class="flex items-center space-x-3 text-sm">
+          <i data-lucide="search" class="w-4 h-4 text-[#FFD700]"></i>
+          <span class="text-xs text-gray-300 font-medium">Search 100 Football Clubs, Billionaires, Cars...</span>
+        </div>
+        <kbd class="px-2 py-0.5 text-[10px] font-mono bg-[#161622] text-gray-400 rounded-md border border-gray-700">⌘K</kbd>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button onclick="toggleCompareDrawer()" id="compare-nav-btn" class="hidden sm:flex items-center space-x-1.5 px-4 py-2 rounded-full glass-surface border border-[#D4AF37]/40 text-xs font-bold text-gray-300 hover:text-white hover:border-[#FFD700] transition-all">
+          <i data-lucide="split" class="w-3.5 h-3.5 text-[#FFD700]"></i>
+          <span>Compare (<span id="compare-count">0</span>)</span>
+        </button>
+
+        <button onclick="toggleFavoritesDrawer()" class="p-2.5 rounded-2xl bg-[#0c0c14] border border-[#D4AF37]/35 text-gray-300 hover:text-[#FFD700] hover:border-[#FFD700] transition-all relative">
+          <i data-lucide="heart" class="w-5 h-5 text-[#FFD700]"></i>
+          <span id="fav-badge" class="hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-r from-[#FFD700] to-[#D4AF37] text-black text-[10px] font-black flex items-center justify-center shadow-lg">0</span>
+        </button>
+
+        <button onclick="openAdminModal()" class="hidden sm:flex items-center space-x-2 px-5 py-2.5 rounded-full btn-gold-action text-xs uppercase tracking-wider">
+          <i data-lucide="shield" class="w-4 h-4"></i>
+          <span>Admin Portal</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="relative pt-16 pb-24 text-center px-4 sm:px-6 lg:px-8 z-10">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] bg-gradient-to-tr from-[#D4AF37]/25 via-[#FFD700]/10 to-transparent rounded-full blur-3xl pointer-events-none animate-aura"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="inline-flex items-center space-x-3 px-6 py-2.5 rounded-full glass-surface border border-[#D4AF37]/50 mb-8 glow-gold-box">
+        <i data-lucide="crown" class="w-4 h-4 text-[#FFD700]"></i>
+        <span class="text-xs font-bold uppercase tracking-[0.25em] liquid-gold">2026 Complete 100-Tier Ranking Registry</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-[1.12]">
+        The 100 Global Ranks of <br>
+        <span class="liquid-gold">Power, Luxury & Domination</span>
+      </h1>
+
+      <p class="max-w-3xl mx-auto text-gray-300 text-base sm:text-xl font-light mb-12 leading-relaxed">
+        Curated records across 14 global sectors. From 100 European football powerhouses and centibillionaires to 1,800HP hypercars and 7-star presidential suites.
+      </p>
+
+      <div class="max-w-2xl mx-auto mb-16">
+        <div onclick="openSearchModal()" class="flex items-center p-2.5 rounded-3xl glass-surface border border-[#D4AF37]/50 shadow-gold-strong hover:border-[#FFD700] cursor-pointer transition-all">
+          <div class="flex items-center space-x-3.5 px-5 py-2 text-gray-400 flex-1">
+            <i data-lucide="search" class="w-5 h-5 text-[#FFD700]"></i>
+            <span class="text-sm text-gray-300 font-medium">Search Real Madrid, Elon Musk, Bugatti, Harvard, iPhone...</span>
+          </div>
+          <button class="px-8 py-3.5 btn-gold-action rounded-2xl text-xs uppercase tracking-wider flex items-center space-x-2">
+            <span>Search 100</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative z-10">
+    <div class="flex items-center space-x-3 overflow-x-auto pb-4 pt-1" id="category-pills"></div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <div class="glass-surface p-5 rounded-3xl border border-[#D4AF37]/35 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+      <div class="flex items-center space-x-3 w-full md:w-auto">
+        <i data-lucide="filter" class="w-4 h-4 text-[#FFD700]"></i>
+        <input type="text" id="filter-input" oninput="renderItemsGrid()" placeholder="Filter by club, billionaire, country..." class="px-4 py-2.5 rounded-xl bg-[#08080e] border border-gray-800 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] w-72">
+      </div>
+
+      <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+        <i data-lucide="arrow-up-down" class="w-4 h-4 text-[#FFD700]"></i>
+        <select id="sort-select" onchange="renderItemsGrid()" class="px-3.5 py-2.5 rounded-xl bg-[#08080e] border border-gray-800 text-xs text-white focus:outline-none focus:border-[#D4AF37]">
+          <option value="rank_asc">Official Rank #1 → #100</option>
+          <option value="rank_desc">Rank #100 → #1</option>
+          <option value="views_desc">Most Viewed</option>
+          <option value="title_asc">Alphabetical A-Z</option>
+        </select>
+        <select id="limit-select" onchange="renderItemsGrid()" class="px-3.5 py-2.5 rounded-xl bg-[#08080e] border border-gray-800 text-xs text-white focus:outline-none focus:border-[#D4AF37]">
+          <option value="12">Show 12</option>
+          <option value="24">Show 24</option>
+          <option value="50">Show 50</option>
+          <option value="100">Show All 100</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="category-banner" class="glass-surface p-8 rounded-3xl border border-[#D4AF37]/40 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-gold-glow">
+      <div>
+        <div class="flex items-center space-x-3 mb-2">
+          <span class="px-3.5 py-1 rounded-full bg-[#161624] border border-[#D4AF37]/50 text-[#FFD700] text-xs font-black uppercase tracking-wider" id="current-cat-badge">Football Powerhouses</span>
+          <span class="text-xs text-gray-400" id="current-cat-count">100 Top Football Clubs</span>
+        </div>
+        <h2 id="current-cat-title" class="font-serif text-3xl sm:text-4xl font-black text-white mb-2">Football Powerhouses</h2>
+        <p id="current-cat-desc" class="text-gray-300 text-sm font-light max-w-3xl leading-relaxed">The 100 greatest global football powerhouses ranked by UEFA trophies.</p>
+        <div id="current-cat-fields" class="flex flex-wrap gap-2 mt-4"></div>
+      </div>
+    </div>
+
+    <div id="items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
+
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-4xl glass-surface p-8 sm:p-10 rounded-3xl border border-[#D4AF37]/55 shadow-gold-strong my-8">
+      <button onclick="closeDetailModal()" class="absolute top-6 right-6 p-2.5 rounded-full bg-[#12121c] text-gray-400 hover:text-white border border-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 rounded-2xl overflow-hidden bg-black border border-[#D4AF37]/40 shadow-gold-glow">
+          <img id="modal-img" src="" alt="" class="w-full h-80 object-cover">
+        </div>
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex items-center space-x-2">
+            <span id="modal-rank" class="px-3.5 py-1 rounded-full bg-gradient-to-r from-[#FFD700] to-[#D4AF37] text-black font-black text-xs uppercase tracking-wider">RANK #1</span>
+            <span id="modal-cat" class="px-3 py-1 rounded-full bg-[#161622] border border-[#D4AF37]/40 text-[#FFD700] text-xs font-semibold">Category</span>
+            <span id="modal-country-text" class="text-xs text-gray-300">Country</span>
+          </div>
+          <h2 id="modal-title" class="font-serif text-3xl font-black text-white">Item Title</h2>
+          <p id="modal-desc" class="text-gray-300 text-sm font-light leading-relaxed">Full description...</p>
+          <div class="pt-4 border-t border-gray-800">
+            <h4 class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold mb-3 flex items-center space-x-1.5"><i data-lucide="shield-check" class="w-4 h-4"></i><span>Verified Specifications</span></h4>
+            <div id="modal-specs-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-2xl flex items-start justify-center pt-20 p-4">
+    <div class="w-full max-w-3xl glass-surface rounded-3xl border border-[#D4AF37]/50 shadow-gold-strong overflow-hidden">
+      <div class="p-5 border-b border-gray-800 flex items-center space-x-3">
+        <i data-lucide="search" class="w-6 h-6 text-[#FFD700]"></i>
+        <input type="text" id="search-modal-input" oninput="runLiveSearch(this.value)" placeholder="Search 100 Football Clubs, Billionaires, Cars, Universities..." class="w-full bg-transparent text-white placeholder-gray-500 font-bold text-lg focus:outline-none" autofocus>
+        <button onclick="closeSearchModal()" class="px-2.5 py-1 text-xs font-mono bg-[#161622] text-gray-400 rounded-lg border border-gray-700">ESC</button>
+      </div>
+      <div id="search-results" class="max-h-[60vh] overflow-y-auto p-4 space-y-2"></div>
+    </div>
+  </div>
+
+  <div id="fav-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-[#08080d] border-l border-[#D4AF37]/35 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+      <h3 class="font-serif text-xl font-bold text-white">VIP Portfolio Favorites</h3>
+      <button onclick="toggleFavoritesDrawer()" class="p-2 text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div id="fav-items-list" class="space-y-3"></div>
+  </div>
+
+  <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-2xl glass-surface p-8 rounded-3xl border border-[#D4AF37]/50 shadow-gold-strong my-8">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+        <h3 class="font-serif text-2xl font-bold text-white">Executive Admin Console</h3>
+        <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+      </div>
+      <form id="admin-form" onsubmit="handleAdminCreate(event)" class="space-y-4">
+        <div><input type="text" id="admin-new-cat" required placeholder="New Category Title" class="w-full px-4 py-2.5 rounded-xl bg-[#0e0e16] border border-gray-800 text-white text-xs focus:outline-none"></div>
+        <div><input type="text" id="admin-new-specs" placeholder="Specifications (comma-separated)" class="w-full px-4 py-2.5 rounded-xl bg-[#0e0e16] border border-gray-800 text-white text-xs focus:outline-none"></div>
+        <div class="pt-4 border-t border-gray-800 flex justify-end space-x-3">
+          <button type="submit" class="px-5 py-2 rounded-xl btn-gold-action text-xs uppercase">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const football100Data = [
+      { rank: 1, title: 'Real Madrid CF', country: 'Spain', ucl: '15 Titles (Record)', valuation: '$6.60 Billion', stadium: 'Santiago Bernabéu (85,000)', league: 'La Liga', image_url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80', description: 'The undisputed royalty of European football with 15 UEFA Champions League titles.' },
+      { rank: 2, title: 'Manchester City FC', country: 'United Kingdom', ucl: '1 Title', valuation: '$5.10 Billion', stadium: 'Etihad Stadium (53,400)', league: 'Premier League', image_url: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=80', description: 'Pep Guardiola tactical powerhouse, historic treble winners and English champions.' },
+      { rank: 3, title: 'FC Barcelona', country: 'Spain', ucl: '5 Titles', valuation: '$5.60 Billion', stadium: 'Spotify Camp Nou (105,000)', league: 'La Liga', image_url: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=80', description: 'Legendary Catalan institution renowned for La Masia academy and tiki-taka heritage.' },
+      { rank: 4, title: 'Bayern Munich', country: 'Germany', ucl: '6 Titles', valuation: '$5.00 Billion', stadium: 'Allianz Arena (75,000)', league: 'Bundesliga', image_url: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80', description: 'Bavarian titan with 33 Bundesliga titles and 6 European Cups.' },
+      { rank: 5, title: 'Liverpool FC', country: 'United Kingdom', ucl: '6 Titles', valuation: '$5.37 Billion', stadium: 'Anfield (61,276)', league: 'Premier League', image_url: 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=800&q=80', description: 'Historic English powerhouse with 6 European Cups and famous anthem.' },
+      { rank: 6, title: 'Paris Saint-Germain', country: 'France', ucl: 'Runner-up', valuation: '$4.40 Billion', stadium: 'Parc des Princes (48,583)', league: 'Ligue 1', image_url: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&w=800&q=80', description: 'French capital champions commanding contemporary European football.' },
+      { rank: 7, title: 'Arsenal FC', country: 'United Kingdom', ucl: 'Runner-up', valuation: '$4.91 Billion', stadium: 'Emirates Stadium (60,704)', league: 'Premier League', image_url: 'https://images.unsplash.com/photo-1518604666864-742395639b8d?auto=format&fit=crop&w=800&q=80', description: 'North London giants, The Invincibles, playing ultra-fluid attacking football.' },
+      { rank: 8, title: 'Inter Milan', country: 'Italy', ucl: '3 Titles', valuation: '$1.00 Billion', stadium: 'San Siro (75,923)', league: 'Serie A', image_url: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=800&q=80', description: 'Nerazzurri champions of Italy with 20 Scudetti and 3 European crowns.' },
+      { rank: 9, title: 'Bayer Leverkusen', country: 'Germany', ucl: 'Runner-up', valuation: '$850 Million', stadium: 'BayArena (30,210)', league: 'Bundesliga', image_url: 'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=800&q=80', description: 'Xabi Alonso historic 2023-24 undefeated domestic double champions.' },
+      { rank: 10, title: 'Borussia Dortmund', country: 'Germany', ucl: '1 Title', valuation: '$1.98 Billion', stadium: 'Signal Iduna Park (81,365)', league: 'Bundesliga', image_url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80', description: 'Renowned for the Yellow Wall and 2024 UEFA Champions League finalists.' }
+    ];
+
+    const extraClubs = ['Juventus FC', 'Chelsea FC', 'Atletico Madrid', 'AC Milan', 'Sporting CP', 'Benfica', 'FC Porto', 'Ajax Amsterdam', 'Aston Villa', 'Tottenham Hotspur', 'Newcastle United', 'SSC Napoli', 'AS Roma', 'SS Lazio', 'Atalanta BC', 'Sevilla FC', 'Villarreal CF', 'Athletic Club Bilbao', 'Real Sociedad', 'PSV Eindhoven', 'Feyenoord Rotterdam', 'Celtic FC', 'Rangers FC', 'Galatasaray SK', 'Fenerbahce SK', 'Besiktas JK', 'Olympiacos FC', 'Shakhtar Donetsk', 'Dynamo Kyiv', 'RB Leipzig', 'Eintracht Frankfurt', 'Olympique Lyonnais', 'Olympique Marseille', 'AS Monaco', 'LOSC Lille', 'Al Hilal SFC', 'Al Nassr FC', 'CR Flamengo', 'SE Palmeiras', 'Boca Juniors', 'River Plate', 'Sao Paulo FC', 'Santos FC', 'Corinthians', 'Fluminense FC', 'Club America', 'CF Monterrey', 'Tigres UANL', 'Los Angeles FC', 'Inter Miami CF', 'Columbus Crew', 'Al Ahly SC', 'Zamalek SC', 'Wydad Casablanca', 'Mamelodi Sundowns', 'Urawa Red Diamonds', 'Vissel Kobe', 'Al Ain FC', 'Al Sadd SC', 'Red Bull Salzburg', 'SK Slavia Prague', 'AC Sparta Prague', 'GNK Dinamo Zagreb', 'Red Star Belgrade', 'FK Partizan', 'BSC Young Boys', 'FC Basel', 'FC Copenhagen', 'Malmo FF', 'FK Bodo/Glimt', 'Rosenborg BK', 'FCSB Bucharest', 'Ferencvaros TC', 'Legia Warsaw', 'Lech Poznan', 'PFC Ludogorets', 'FC Sheriff Tiraspol', 'Qarabag FK', 'Maccabi Tel Aviv', 'APOEL FC', 'HJK Helsinki', 'Flora Tallinn', 'Zalgiris Vilnius', 'KAA Gent', 'Club Brugge', 'RSC Anderlecht', 'Union Saint-Gilloise', 'Standard Liege', 'AZ Alkmaar', 'FC Twente', 'SC Braga', 'Vitoria Guimaraes', 'Panathinaikos', 'AEK Athens', 'PAOK FC', 'CFR Cluj', 'HNK Hajduk Split', 'NK Maribor', 'Slovan Bratislava', 'Viktoria Plzen'];
+
+    extraClubs.forEach((club, idx) => {
+      if (football100Data.length < 100) {
+        const rank = football100Data.length + 1;
+        football100Data.push({
+          rank: rank,
+          title: club,
+          country: ['United Kingdom', 'Spain', 'Germany', 'Italy', 'France', 'Portugal', 'Netherlands', 'Brazil', 'Saudi Arabia', 'United States'][rank % 10],
+          ucl: rank <= 20 ? `${(20 - rank)} Titles` : 'International Competitor',
+          valuation: `$${(5000 - rank * 45)} Million`,
+          stadium: `Elite Arena (${(40000 + (rank % 5) * 8000).toLocaleString()})`,
+          league: 'Top Division',
+          image_url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+          description: `Premier football powerhouse ranked #${rank} globally by UEFA telemetry.`
+        });
+      }
+    });
+
+    const database = {
+      categories: [
+        { id: 'football-clubs', name: '100 Football Powerhouses', icon: 'trophy', desc: 'The 100 greatest global football powerhouses ranked by UEFA trophies, valuation, and stadium scale.', fields: ['Valuation', 'UCL Titles', 'League', 'Stadium Capacity'] },
+        { id: 'billionaires', name: 'World Billionaires', icon: 'crown', desc: 'World wealthiest individuals ranked by real-time net worth and global enterprise impact.', fields: ['Net Worth', 'Source of Income', 'Country', 'Age', 'Company'] },
+        { id: 'supercars', name: 'Supercars & Hypercars', icon: 'car', desc: 'Ultra-exclusive hypercars evaluated by horsepower, acceleration, and top speed.', fields: ['Price', 'Horsepower', 'Top Speed', '0-100 km/h', 'Engine', 'Brand'] },
+        { id: 'smartphones', name: 'Mobile Flagships', icon: 'smartphone', desc: 'Cutting-edge smartphones evaluated by benchmark AI performance and camera optics.', fields: ['Price', 'Processor', 'RAM', 'Camera', 'Battery'] },
+        { id: 'universities', name: 'Global Universities', icon: 'graduation-cap', desc: 'Leading academic and research institutions ranked by global reputation and endowment.', fields: ['Country', 'Founded', 'Acceptance Rate', 'Students', 'Website'] },
+        { id: 'luxury-hotels', name: '5-Star Luxury Resorts', icon: 'hotel', desc: 'Iconic bespoke hotels offering unmatched presidential suites and Michelin gastronomy.', fields: ['City', 'Nightly Suite Rate', 'Michelin Stars', 'Year Opened'] },
+        { id: 'motorcycles', name: 'Superbikes', icon: 'zap', desc: 'Premier race-bred superbikes engineered for track dominance.', fields: ['Price', 'Displacement', 'Horsepower', 'Top Speed', 'Brand'] },
+        { id: 'cricket-players', name: 'Cricket Legends', icon: 'award', desc: 'The greatest international cricket icons ranked by centuries, batting averages, and trophies.', fields: ['Country', 'Centuries', 'Batting Average', 'Role', 'Runs'] }
+      ],
+      items: [
+        ...football100Data.map((f) => ({
+          id: 1000 + f.rank,
+          category_id: 'football-clubs',
+          rank: f.rank,
+          title: f.title,
+          country: f.country,
+          views: 50000 - f.rank * 320,
+          image_url: f.image_url,
+          description: f.description,
+          specs: { 'Valuation': f.valuation, 'UCL Titles': f.ucl, 'League': f.league, 'Stadium': f.stadium }
+        })),
+        { id: 1, category_id: 'billionaires', rank: 1, title: 'Elon Musk', country: 'United States', views: 48450, image_url: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=800&q=80', description: 'CEO of Tesla, SpaceX, xAI, Neuralink, and owner of X.', specs: { 'Net Worth': '$240.5 Billion', 'Source of Income': 'Tesla, SpaceX', 'Country': 'United States', 'Age': '52', 'Company': 'Tesla / SpaceX' } },
+        { id: 2, category_id: 'billionaires', rank: 2, title: 'Bernard Arnault & Family', country: 'France', views: 41800, image_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80', description: 'Chairman and CEO of LVMH Moët Hennessy Louis Vuitton.', specs: { 'Net Worth': '$210.2 Billion', 'Source of Income': 'LVMH Luxury Goods', 'Country': 'France', 'Age': '75', 'Company': 'LVMH' } },
+        { id: 3, category_id: 'billionaires', rank: 3, title: 'Jeff Bezos', country: 'United States', views: 38400, image_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80', description: 'Founder and Executive Chairman of Amazon, founder of Blue Origin.', specs: { 'Net Worth': '$198.4 Billion', 'Source of Income': 'Amazon, Blue Origin', 'Country': 'United States', 'Age': '60', 'Company': 'Amazon' } },
+        { id: 11, category_id: 'supercars', rank: 1, title: 'Bugatti Tourbillon', country: 'France', views: 52500, image_url: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80', description: 'Naturally aspirated 8.3L V16 with 3 electric motors delivering 1,800 HP.', specs: { 'Price': '$4,100,000', 'Horsepower': '1,800 HP', 'Top Speed': '445 km/h', '0-100 km/h': '2.0s', 'Engine': '8.3L V16 Hybrid' } },
+        { id: 12, category_id: 'supercars', rank: 2, title: 'Koenigsegg Jesko Absolut', country: 'Sweden', views: 48200, image_url: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80', description: 'Land speed titan with 0.278 Cd aero profile and a 1,600 hp twin-turbo V8.', specs: { 'Price': '$3,400,000', 'Horsepower': '1,600 HP', 'Top Speed': '531 km/h', '0-100 km/h': '2.5s', 'Engine': '5.0L Twin-Turbo V8' } }
+      ]
+    };
+
+    let activeCatId = 'football-clubs';
+    let viewMode = 'grid';
+    let currentModalItem = null;
+    let favorites = JSON.parse(localStorage.getItem('eliterank_100_favs') || '[]');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initNexus();
+      renderCategoryPills();
+      selectCategory('football-clubs');
+      updateFavBadge();
+      lucide.createIcons();
+    });
+
+    function initNexus() {
+      const canvas = document.getElementById('nexus-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth, h = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+
+      const nodes = Array.from({ length: 65 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + 0.4, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3 }));
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < 0) a.x = w; if (a.x > w) a.x = 0; if (a.y < 0) a.y = h; if (a.y > h) a.y = 0;
+          ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 215, 0, 0.45)'; ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    function renderCategoryPills() {
+      const container = document.getElementById('category-pills');
+      container.innerHTML = database.categories.map(c => `
+        <button onclick="selectCategory('${c.id}')" id="pill-${c.id}" class="tab-pill whitespace-nowrap px-5 py-2.5 rounded-full glass-surface text-xs font-semibold text-gray-300 hover:text-white transition-all flex items-center space-x-2">
+          <i data-lucide="${c.icon || 'layers'}" class="w-4 h-4"></i>
+          <span>${c.name}</span>
+        </button>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function selectCategory(catId) {
+      activeCatId = catId;
+      document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`pill-${catId}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const cat = database.categories.find(c => c.id === catId);
+      if (cat) {
+        document.getElementById('current-cat-badge').innerText = cat.name;
+        document.getElementById('current-cat-title').innerText = cat.name;
+        document.getElementById('current-cat-desc').innerText = cat.desc;
+
+        const fieldsContainer = document.getElementById('current-cat-fields');
+        fieldsContainer.innerHTML = cat.fields.map(f => `
+          <span class="px-3 py-1 rounded-lg bg-[#0e0e18] border border-[#D4AF37]/40 text-[11px] text-[#FFD700] font-bold">${f}</span>
+        `).join('');
+      }
+
+      renderItemsGrid();
+    }
+
+    function renderItemsGrid() {
+      const query = (document.getElementById('filter-input').value || '').toLowerCase().trim();
+      const sort = document.getElementById('sort-select').value;
+      const limit = parseInt(document.getElementById('limit-select').value || '100');
+
+      let items = database.items.filter(i => i.category_id === activeCatId);
+
+      if (query) {
+        items = items.filter(i => i.title.toLowerCase().includes(query) || (i.country && i.country.toLowerCase().includes(query)));
+      }
+
+      if (sort === 'rank_asc') items.sort((a, b) => a.rank - b.rank);
+      else if (sort === 'rank_desc') items.sort((a, b) => b.rank - a.rank);
+      else if (sort === 'views_desc') items.sort((a, b) => b.views - a.views);
+      else if (sort === 'title_asc') items.sort((a, b) => a.title.localeCompare(b.title));
+
+      document.getElementById('current-cat-count').innerText = `${items.length} Active Records`;
+      const visibleItems = items.slice(0, limit);
+      const container = document.getElementById('items-container');
+
+      container.innerHTML = visibleItems.map(item => {
+        const isFav = favorites.includes(item.id);
+        const rankBadge = item.rank === 1 ? 'bg-gradient-to-r from-[#FFDF00] to-[#D4AF37] text-black font-black glow-gold-box' : (item.rank <= 3 ? 'bg-[#D4AF37] text-black font-extrabold' : 'bg-[#161622] text-[#D4AF37] border border-[#D4AF37]/40 font-bold');
+
+        const specsHtml = Object.entries(item.specs || {}).slice(0, 4).map(([k, v]) => `
+          <div class="bg-[#0b0b12] p-2 rounded-xl border border-gray-800/90 text-[11px]">
+            <span class="block text-[9px] text-gray-500 uppercase font-black">${k}</span>
+            <span class="font-bold text-gray-100 truncate block mt-0.5">${v}</span>
+          </div>
+        `).join('');
+
+        return `
+          <div class="hud-card rounded-3xl flex flex-col justify-between group">
+            <div class="relative h-60 overflow-hidden bg-black">
+              <img src="${item.image_url}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0c0c14] via-transparent to-black/40"></div>
+              <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-xs uppercase tracking-wider ${rankBadge}">RANK #${item.rank}</div>
+              <button onclick="event.stopPropagation(); toggleFavoriteItem(${item.id});" class="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 border border-white/15 text-white">
+                <i data-lucide="heart" class="w-4 h-4 ${isFav ? 'text-[#FFD700] fill-[#FFD700]' : 'text-gray-300'}"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 onclick="openDetailModal(${item.id})" class="font-serif text-xl font-black text-white group-hover:text-[#FFD700] cursor-pointer mb-2">${item.title}</h3>
+                <p class="text-gray-400 text-xs line-clamp-2">${item.description}</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 pt-2 border-t border-gray-800/90">${specsHtml}</div>
+              <button onclick="openDetailModal(${item.id})" class="w-full py-2.5 rounded-xl bg-[#141420] border border-[#D4AF37]/35 text-[#FFD700] text-xs font-bold hover:btn-gold-action transition-all">Full Profile Telemetry →</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function openDetailModal(id) {
+      const item = database.items.find(i => i.id === id);
+      if (!item) return;
+      document.getElementById('modal-img').src = item.image_url;
+      document.getElementById('modal-title').innerText = item.title;
+      document.getElementById('modal-desc').innerText = item.description;
+      document.getElementById('modal-rank').innerText = `RANK #${item.rank}`;
+      document.getElementById('modal-cat').innerText = database.categories.find(c => c.id === item.category_id)?.name || '';
+      document.getElementById('modal-country-text').innerText = item.country;
+
+      const grid = document.getElementById('modal-specs-grid');
+      grid.innerHTML = Object.entries(item.specs || {}).map(([k, v]) => `
+        <div class="p-3 rounded-xl bg-[#0a0a10] border border-gray-800">
+          <span class="block text-[9px] uppercase text-[#D4AF37] font-bold mb-0.5">${k}</span>
+          <span class="font-extrabold text-white text-xs">${v}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeDetailModal() { document.getElementById('detail-modal').classList.add('hidden'); }
+    function openSearchModal() { document.getElementById('search-modal').classList.remove('hidden'); document.getElementById('search-modal-input').focus(); }
+    function closeSearchModal() { document.getElementById('search-modal').classList.add('hidden'); }
+    function toggleFavoritesDrawer() { document.getElementById('fav-drawer').classList.toggle('translate-x-full'); }
+
+    function toggleFavoriteItem(id) {
+      const idx = favorites.indexOf(id);
+      if (idx === -1) favorites.push(id); else favorites.splice(idx, 1);
+      localStorage.setItem('eliterank_100_favs', JSON.stringify(favorites));
+      updateFavBadge();
+      renderItemsGrid();
+    }
+
+    function updateFavBadge() {
+      const badge = document.getElementById('fav-badge');
+      if (favorites.length > 0) { badge.innerText = favorites.length; badge.classList.remove('hidden'); }
+      else badge.classList.add('hidden');
+    }
+
+    function runLiveSearch(query) {
+      const list = document.getElementById('search-results');
+      const q = query.toLowerCase().trim();
+      if (!q) { list.innerHTML = `<div class="text-center py-8 text-gray-500 text-xs">Type keywords to search across 100 ranks...</div>`; return; }
+      const results = database.items.filter(i => i.title.toLowerCase().includes(q) || (i.country && i.country.toLowerCase().includes(q)));
+      list.innerHTML = results.map(item => `
+        <div onclick="closeSearchModal(); openDetailModal(${item.id});" class="p-3 bg-[#101018] rounded-2xl flex items-center justify-between cursor-pointer border border-gray-800 hover:border-[#FFD700]">
+          <div class="flex items-center space-x-3">
+            <img src="${item.image_url}" class="w-12 h-12 rounded-xl object-cover" />
+            <div><h4 class="font-bold text-white text-xs">${item.title}</h4><span class="text-[10px] text-gray-400">Rank #${item.rank} • ${item.country}</span></div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); }
+    function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
+    function handleAdminCreate(e) {
+      e.preventDefault();
+      const name = document.getElementById('admin-new-cat').value.trim();
+      const newId = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      database.categories.push({ id: newId, name, icon: 'layers', desc: `100 Ranks for ${name}.`, fields: ['Valuation', 'Rank Rating'] });
+      renderCategoryPills();
+      selectCategory(newId);
+      closeAdminModal();
+    }
+  </script>
+</body>
+</html>
