@@ -55,35 +55,35 @@ const HomePage = ({ onOpenSearch }) => {
     <div className="min-h-screen pb-28 bg-[#FAFAFC]">
       
       {/* Continuous Live Rankings Marquee Ticker */}
-      <div className="relative z-20 bg-white border-b border-purple-200 py-2.5 text-xs overflow-hidden shadow-sm">
-        <div className="animate-marquee whitespace-nowrap flex items-center space-x-12">
+      <div className="relative z-20 bg-white border-b border-purple-200 py-3 text-xs overflow-hidden shadow-sm group">
+        <div className="animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap flex items-center space-x-12">
           <div className="flex items-center space-x-8 text-gray-700">
             <span className="flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#059669]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#059669] radar-beacon" />
               <strong className="text-[#4C1D95] font-serif-luxury font-black">100 RANK VERIFIED INDEX:</strong>
             </span>
-            <span>📱 #1 Mobile: <strong className="text-[#0A0A12] font-black">iPhone 15 Pro Max (3nm A17 Pro)</strong></span>
-            <span>👑 #1 Billionaire: <strong className="text-[#0A0A12] font-black">Elon Musk ($242.0B)</strong></span>
-            <span>🏎️ #1 Hypercar: <strong className="text-[#0A0A12] font-black">Bugatti Tourbillon (1,800 HP V16)</strong></span>
-            <span>⚽ #1 Football: <strong className="text-[#0A0A12] font-black">Real Madrid CF (15 UCL Titles)</strong></span>
-            <span>🎓 #1 University: <strong className="text-[#0A0A12] font-black">Harvard University (1636)</strong></span>
-            <span>✈️ #1 Airline: <strong className="text-[#0A0A12] font-black">Singapore Airlines (First Class Suites)</strong></span>
-            <span>💻 #1 Tech: <strong className="text-[#0A0A12] font-black">Microsoft ($3.2 Trillion)</strong></span>
-            <span>🏨 #1 Hotel: <strong className="text-[#0A0A12] font-black">Burj Al Arab Jumeirah ($24,000/nt)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">📱 #1 Mobile: <strong className="text-[#0A0A12] font-black">iPhone 15 Pro Max (3nm A17 Pro)</strong></span>
+            <span className="hover:text-[#D4AF37] transition-colors">👑 #1 Billionaire: <strong className="text-[#0A0A12] font-black">Elon Musk ($242.0B)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">🏎️ #1 Hypercar: <strong className="text-[#0A0A12] font-black">Bugatti Tourbillon (1,800 HP V16)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">⚽ #1 Football: <strong className="text-[#0A0A12] font-black">Real Madrid CF (15 UCL Titles)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">🎓 #1 University: <strong className="text-[#0A0A12] font-black">Harvard University (1636)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">✈️ #1 Airline: <strong className="text-[#0A0A12] font-black">Singapore Airlines (First Class Suites)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">💻 #1 Tech: <strong className="text-[#0A0A12] font-black">Microsoft ($3.2 Trillion)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">🏨 #1 Hotel: <strong className="text-[#0A0A12] font-black">Burj Al Arab Jumeirah ($24,000/nt)</strong></span>
           </div>
           <div className="flex items-center space-x-8 text-gray-700">
             <span className="flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#059669]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#059669] radar-beacon" />
               <strong className="text-[#4C1D95] font-serif-luxury font-black">100 RANK VERIFIED INDEX:</strong>
             </span>
-            <span>📱 #1 Mobile: <strong className="text-[#0A0A12] font-black">iPhone 15 Pro Max (3nm A17 Pro)</strong></span>
-            <span>👑 #1 Billionaire: <strong className="text-[#0A0A12] font-black">Elon Musk ($242.0B)</strong></span>
-            <span>🏎️ #1 Hypercar: <strong className="text-[#0A0A12] font-black">Bugatti Tourbillon (1,800 HP V16)</strong></span>
-            <span>⚽ #1 Football: <strong className="text-[#0A0A12] font-black">Real Madrid CF (15 UCL Titles)</strong></span>
-            <span>🎓 #1 University: <strong className="text-[#0A0A12] font-black">Harvard University (1636)</strong></span>
-            <span>✈️ #1 Airline: <strong className="text-[#0A0A12] font-black">Singapore Airlines (First Class Suites)</strong></span>
-            <span>💻 #1 Tech: <strong className="text-[#0A0A12] font-black">Microsoft ($3.2 Trillion)</strong></span>
-            <span>🏨 #1 Hotel: <strong className="text-[#0A0A12] font-black">Burj Al Arab Jumeirah ($24,000/nt)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">📱 #1 Mobile: <strong className="text-[#0A0A12] font-black">iPhone 15 Pro Max (3nm A17 Pro)</strong></span>
+            <span className="hover:text-[#D4AF37] transition-colors">👑 #1 Billionaire: <strong className="text-[#0A0A12] font-black">Elon Musk ($242.0B)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">🏎️ #1 Hypercar: <strong className="text-[#0A0A12] font-black">Bugatti Tourbillon (1,800 HP V16)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">⚽ #1 Football: <strong className="text-[#0A0A12] font-black">Real Madrid CF (15 UCL Titles)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">🎓 #1 University: <strong className="text-[#0A0A12] font-black">Harvard University (1636)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">✈️ #1 Airline: <strong className="text-[#0A0A12] font-black">Singapore Airlines (First Class Suites)</strong></span>
+            <span className="hover:text-[#7C3AED] transition-colors">💻 #1 Tech: <strong className="text-[#0A0A12] font-black">Microsoft ($3.2 Trillion)</strong></span>
+            <span className="hover:text-[#059669] transition-colors">🏨 #1 Hotel: <strong className="text-[#0A0A12] font-black">Burj Al Arab Jumeirah ($24,000/nt)</strong></span>
           </div>
         </div>
       </div>
@@ -117,14 +117,14 @@ const HomePage = ({ onOpenSearch }) => {
             <Link
               key={cat.id}
               to={`/category/${cat.slug}`}
-              className="category-hero-block rounded-3xl p-6 flex flex-col justify-between group text-decoration-none shadow-regal-strong"
+              className="category-hero-block rounded-3xl p-6 flex flex-col justify-between group text-decoration-none shadow-regal-strong hover:scale-[1.02] transition-transform duration-300"
             >
               {/* Image Container with Restrained Scale */}
               <div className="relative h-48 rounded-2xl overflow-hidden mb-5 bg-gray-100 border border-purple-200 shadow-sm">
                 <img
                   src={cat.banner_url || 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80'}
                   alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2E1065]/80 via-transparent to-black/20" />
                 
@@ -166,13 +166,13 @@ const HomePage = ({ onOpenSearch }) => {
         </div>
       </section>
 
-      {/* ENTRANCE TYPE A: Comparison Matrix Teaser */}
+      {/* ENTRANCE TYPE A: Comparison Matrix Teaser with Radiant Border Beam */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
 
-        <div className="hud-card rounded-3xl p-8 sm:p-10 border-2 border-[#7C3AED]/40 bg-gradient-to-r from-[#F5F3FF] via-white to-[#ECFDF5] shadow-regal-strong">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="hud-card rounded-3xl p-8 sm:p-10 border-2 border-[#7C3AED]/40 bg-gradient-to-r from-[#F5F3FF] via-white to-[#ECFDF5] shadow-regal-strong border-beam-card">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
             <div className="space-y-2 text-center md:text-left">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white border border-purple-300 text-[#7C3AED] text-xs font-black uppercase tracking-wider">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white border border-purple-300 text-[#7C3AED] text-xs font-black uppercase tracking-wider shadow-sm animate-float">
                 <Split className="w-3.5 h-3.5 text-[#059669]" />
                 <span>Side-by-Side Model Comparison</span>
               </div>
@@ -184,10 +184,10 @@ const HomePage = ({ onOpenSearch }) => {
               </p>
             </div>
 
-            <MagneticButton strength={0.25}>
+            <MagneticButton>
               <Link
                 to="/compare"
-                className="px-8 py-4 rounded-2xl btn-purple-action btn-micro-engineered text-xs uppercase tracking-wider flex items-center space-x-2 shrink-0 shadow-purple-glow"
+                className="px-8 py-4 rounded-2xl btn-purple-action text-xs uppercase tracking-wider flex items-center space-x-2 shrink-0 shadow-purple-glow font-extrabold"
               >
                 <Split className="w-4 h-4" />
                 <span>Launch Comparison Matrix</span>
@@ -196,6 +196,7 @@ const HomePage = ({ onOpenSearch }) => {
           </div>
         </div>
       </section>
+
 
       {/* Verified Standings Catalog */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

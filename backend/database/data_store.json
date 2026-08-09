@@ -470,7 +470,7 @@
       "title": "Elon Musk",
       "slug": "elon-musk-1",
       "description": "Visionary tech pioneer advancing interplanetary exploration with SpaceX Starship, autonomous driving, and Grok frontier intelligence.",
-      "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+      "image_url": "http://localhost:5000/uploads/eliterank-1786245514183-172236205.jpg",
       "rank": 1,
       "views_count": 907407,
       "country": "United States",

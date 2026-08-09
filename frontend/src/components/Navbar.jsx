@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Search, Heart, Shield, LogOut, User, Menu, X, ChevronDown, Split, Sparkles, Sliders, Database } from 'lucide-react';
+import { Crown, Search, Heart, Shield, LogOut, User, Menu, X, ChevronDown, Split, Sparkles, Sliders, Database, Activity } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCompare } from '../context/CompareContext';
 import { useReducedMotion, gsap } from '../utils/useCinematicAnimation';
+import ScrollProgress from './ScrollProgress';
 
 const Navbar = ({ onOpenSearch }) => {
   const { user, logout, isAdmin, loginAsAdmin } = useAuth();
@@ -48,33 +49,44 @@ const Navbar = ({ onOpenSearch }) => {
   }, [mobileMenuOpen, reducedMotion]);
 
   return (
-    <nav
-      ref={navRef}
-      className={`sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-2xl border-b border-[#7C3AED]/35 shadow-luxury-soft py-0'
-          : 'bg-white/90 backdrop-blur-xl border-b border-[#7C3AED]/20 py-1'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group text-decoration-none">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#7C3AED] via-[#4C1D95] to-[#059669] p-[1.5px] flex items-center justify-center shadow-regal-strong group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-[#0A0A12] rounded-[14px] flex items-center justify-center">
-                <Crown className="w-6 h-6 text-[#A78BFA] group-hover:rotate-12 transition-transform duration-300" />
+    <>
+      <ScrollProgress />
+      <nav
+        ref={navRef}
+        className={`sticky top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-2xl border-b border-[#7C3AED]/35 shadow-luxury-soft py-0'
+            : 'bg-white/90 backdrop-blur-xl border-b border-[#7C3AED]/20 py-1'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Logo & Live Radar Beacon */}
+            <div className="flex items-center space-x-4">
+              <Link to="/" className="flex items-center space-x-3 group text-decoration-none">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#7C3AED] via-[#4C1D95] to-[#059669] p-[1.5px] flex items-center justify-center shadow-regal-strong group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-full h-full bg-[#0A0A12] rounded-[14px] flex items-center justify-center">
+                    <Crown className="w-6 h-6 text-[#A78BFA] group-hover:rotate-12 transition-transform duration-300" />
+                  </div>
+                </div>
+                <div>
+                  <span className="font-serif-luxury text-2xl sm:text-3xl font-black tracking-widest text-[#0A0A12]">
+                    ELITE<span className="purple-gradient-text">RANK</span>
+                  </span>
+                  <span className="block text-[8.5px] uppercase tracking-[0.35em] text-[#059669] font-extrabold">
+                    THE 100 EXCELLENCE INDEX
+                  </span>
+                </div>
+              </Link>
+
+              {/* Pulsing Live Radar Indicator */}
+              <div className="hidden xl:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-[#ECFDF5] border border-emerald-300 text-emerald-800 text-[10px] font-black uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-[#059669] radar-beacon shrink-0" />
+                <span>800 Live Standings</span>
               </div>
             </div>
-            <div>
-              <span className="font-serif-luxury text-2xl sm:text-3xl font-black tracking-widest text-[#0A0A12]">
-                ELITE<span className="purple-gradient-text">RANK</span>
-              </span>
-              <span className="block text-[8.5px] uppercase tracking-[0.35em] text-[#059669] font-extrabold">
-                THE 100 EXCELLENCE INDEX
-              </span>
-            </div>
-          </Link>
+
 
           {/* Search Bar Trigger */}
           <button
@@ -221,9 +233,11 @@ const Navbar = ({ onOpenSearch }) => {
         </div>
       )}
     </nav>
+  </>
   );
 };
 
 export default Navbar;
+
 
 

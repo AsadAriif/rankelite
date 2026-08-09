@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Crown, Trophy, Split, ShieldCheck, ArrowRight, Search } from 'lucide-react';
+import { Crown, Trophy, Split, ShieldCheck, ArrowRight, Search, Sparkles } from 'lucide-react';
 import { useReducedMotion, gsap, ScrollTrigger, LUXURY_EASE, LUXURY_EASE_INOUT } from '../utils/useCinematicAnimation';
 import MagneticButton from './MagneticButton';
 import TextReveal from './TextReveal';
+import HeroParticles from './HeroParticles';
 
 const HeroSection = ({ onOpenSearch }) => {
   const [stats, setStats] = useState({ items: 800, categories: 8, views: 14.8 });
@@ -15,6 +16,7 @@ const HeroSection = ({ onOpenSearch }) => {
   const searchBarRef = useRef(null);
   const countersRef = useRef(null);
   const reducedMotion = useReducedMotion();
+
 
   useEffect(() => {
     const duration = 1200;
@@ -116,6 +118,9 @@ const HeroSection = ({ onOpenSearch }) => {
   return (
     <div ref={heroRef} className="relative pt-12 pb-24 overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F5F3FF] to-[#FAFAFC]">
       
+      {/* Interactive Luxury Particles Field */}
+      <HeroParticles />
+
       {/* Dual Royal Ambient Auroras */}
       <div
         ref={auraRef}
@@ -124,6 +129,7 @@ const HeroSection = ({ onOpenSearch }) => {
       <div
         className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent rounded-full blur-2xl pointer-events-none"
       />
+
 
       <div ref={contentRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         

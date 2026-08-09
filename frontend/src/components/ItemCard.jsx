@@ -104,34 +104,37 @@ const ItemCard = ({ item: initialItem, onUpdate }) => {
     }
   };
 
-  // Rank Badge Styles in Purple & Emerald
+  // Rank Badge Styles in Purple, Gold & Emerald with animations
   const getRankBadgeStyle = (rank) => {
-    if (rank === 1) return 'bg-gradient-to-r from-[#A78BFA] via-[#7C3AED] to-[#059669] text-white font-black shadow-regal-strong border-white';
-    if (rank === 2) return 'bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 text-black font-black border-white shadow-md';
-    if (rank === 3) return 'bg-gradient-to-r from-emerald-500 to-emerald-800 text-white font-black border-emerald-300 shadow-md';
+    if (rank === 1) return 'gold-shimmer-badge text-white font-black shadow-[0_0_15px_rgba(212,175,55,0.7)] border-white';
+    if (rank === 2) return 'bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 text-black font-black border-white shadow-[0_0_10px_rgba(200,200,200,0.5)]';
+    if (rank === 3) return 'bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-800 text-white font-black border-emerald-300 shadow-[0_0_10px_rgba(5,150,105,0.5)]';
     return 'bg-[#F5F3FF] text-[#4C1D95] border-[#7C3AED]/40 font-extrabold';
   };
 
   const officialWebsite = item.custom_values?.website || item.website || 'https://www.google.com';
 
   return (
-    <div className="hud-card rounded-3xl border border-[#7C3AED]/30 overflow-hidden flex flex-col justify-between hover:border-[#7C3AED] transition-all duration-300 shadow-luxury-card hover:-translate-y-1.5 bg-white group relative">
+    <div className={`hud-card rounded-3xl border overflow-hidden flex flex-col justify-between hover:border-[#7C3AED] transition-all duration-300 shadow-luxury-card hover:-translate-y-2 bg-white group relative ${
+      item.rank === 1 ? 'rank-1-halo border-[#D4AF37]/80' : 'border-[#7C3AED]/30'
+    }`}>
       
       {/* Visual Header / Cover Image */}
       <div className="relative h-64 overflow-hidden bg-gray-100">
         <img
           src={item.image_url || 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80'}
           alt={item.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/25" />
 
-        {/* Official Rank Badge */}
+        {/* Official Rank Badge with special Icon */}
         <div className={`absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-xs uppercase tracking-wider ${getRankBadgeStyle(item.rank)} flex items-center space-x-1.5 shadow-md border`}>
-          <Award className="w-3.5 h-3.5" />
+          {item.rank === 1 ? <Crown className="w-3.5 h-3.5 text-yellow-300 animate-pulse" /> : <Award className="w-3.5 h-3.5" />}
           <span>RANK #{item.rank}</span>
         </div>
+
 
         {/* Action Badges on Cover */}
         <div className="absolute top-4 right-4 flex items-center space-x-2">

@@ -220,16 +220,19 @@ const HeritageTimeline = () => {
                     }`}
                   />
 
-                  {/* Era Number Icon */}
+                  {/* Era Number Icon with Radar Beacon on Active */}
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs transition-all duration-300 border ${
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs transition-all duration-300 border relative ${
                       isActive
-                        ? 'bg-gradient-to-r from-[#7C3AED] to-[#059669] text-white border-white shadow-lg scale-110'
+                        ? 'bg-gradient-to-r from-[#7C3AED] to-[#059669] text-white border-white shadow-[0_0_15px_rgba(124,58,237,0.8)] scale-110'
                         : isPast
                         ? 'bg-[#34D399]/20 text-[#34D399] border-[#34D399]/40'
                         : 'bg-white/10 text-gray-400 border-white/15'
                     }`}
                   >
+                    {isActive && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#34D399] radar-beacon" />
+                    )}
                     {item.eraNumber}
                   </div>
 
@@ -239,6 +242,7 @@ const HeritageTimeline = () => {
                       <span className={`font-serif-luxury text-lg font-black transition-colors ${isActive ? 'text-[#34D399]' : 'text-white'}`}>
                         {item.year}
                       </span>
+
                       {isActive && (
                         <span className="px-2 py-0.5 rounded-full bg-[#7C3AED]/40 border border-[#A78BFA]/60 text-[9px] font-black uppercase tracking-wider text-[#DDD6FE]">
                           ACTIVE

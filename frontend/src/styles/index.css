@@ -58,7 +58,28 @@ h1, h2, h3, .font-serif-luxury {
 
 @keyframes pulseGoldGlow {
   0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.25), 0 0 30px rgba(124, 58, 237, 0.15); }
-  50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.5), 0 0 45px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 0 28px rgba(212, 175, 55, 0.6), 0 0 50px rgba(124, 58, 237, 0.35); }
+}
+
+@keyframes borderBeamRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes radarWavePing {
+  0% { transform: scale(1); opacity: 0.8; }
+  70% { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes goldShimmerSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes rank1HaloPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); }
+  50% { box-shadow: 0 0 28px rgba(212, 175, 55, 0.8), inset 0 0 22px rgba(212, 175, 55, 0.4); }
 }
 
 .animate-aurora {
@@ -72,6 +93,50 @@ h1, h2, h3, .font-serif-luxury {
 .glow-pulse-gold {
   animation: pulseGoldGlow 3s ease-in-out infinite;
 }
+
+.radar-beacon {
+  position: relative;
+}
+.radar-beacon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: inherit;
+  animation: radarWavePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Rank #1 Crown Glowing Aura Card */
+.rank-1-halo {
+  animation: rank1HaloPulse 3s ease-in-out infinite;
+}
+
+/* Gold Shimmer Badge Animation */
+.gold-shimmer-badge {
+  background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 25%, #FDE047 50%, #7C3AED 75%, #059669 100%);
+  background-size: 200% 100%;
+  animation: goldShimmerSweep 4s linear infinite;
+}
+
+/* Glowing Radiant Border Card */
+.border-beam-card {
+  position: relative;
+  overflow: hidden;
+}
+.border-beam-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(124, 58, 237, 0.4) 60deg, rgba(212, 175, 55, 0.8) 120deg, transparent 180deg);
+  animation: borderBeamRotate 6s linear infinite;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 1;
+}
+
 
 /* Custom Royal Scrollbar */
 ::-webkit-scrollbar {
