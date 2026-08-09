@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, MapPin, Award, ArrowUpRight, Split, Check, ExternalLink, Globe, ShieldCheck } from 'lucide-react';
+import { Heart, MapPin, Award, ArrowUpRight, Split, Check, ExternalLink, Globe, ShieldCheck, Edit3, X, Save } from 'lucide-react';
 import { formatFieldValue } from '../utils/formatters';
-import { favoriteService } from '../services/api';
+import { favoriteService, itemService } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useCompare } from '../context/CompareContext';
 
-const ItemCard = ({ item }) => {
-  const { user } = useAuth();
+const ItemCard = ({ item: initialItem, onUpdate }) => {
+  const { user, isAdmin } = useAuth();
   const { isInCompare, toggleCompare, openSubpropertyModal } = useCompare();
-  const [isFavorite, setIsFavorite] = useState(item.isFavorite || false);
+  const [item, setItem] = useState(initialItem);
+  const [isFavorite, setIsFavorite] = useState(initialItem.isFavorite || false);
   const [favLoading, setFavLoading] = useState(false);
+
+  // Admin Quick Edit In-Place State
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editTitle, setEditTitle] = useState(item.title);
+  const [editRank, setEditRank] = useState(item.rank);
+  const [editCountry, setEditCountry] = useState(item.country || '');
+  const [editImage, setEditImage] = useState(item.image_url || '');
+  const [editDescription, setEditDescription] = useState(item.description || '');
+  const [editWebsite, setEditWebsite] = useState(item.custom_values?.website || item.website || '');
+  const [editCustomValues, setEditCustomValues] = useState(item.custom_values || {});
+  const [saving, setSaving] = useState(false);
 
   const compared = isInCompare(item.id);
 
@@ -46,6 +58,52 @@ const ItemCard = ({ item }) => {
     openSubpropertyModal(item, key, val);
   };
 
+  const handleOpenEdit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setEditTitle(item.title);
+    setEditRank(item.rank);
+    setEditCountry(item.country || '');
+    setEditImage(item.image_url || '');
+    setEditDescription(item.description || '');
+    setEditWebsite(item.custom_values?.website || item.website || '');
+    setEditCustomValues(item.custom_values || {});
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const mergedValues = { ...editCustomValues };
+      if (editWebsite) mergedValues.website = editWebsite;
+
+      const payload = {
+        category_id: item.category_id,
+        title: editTitle,
+        rank: Number(editRank),
+        country: editCountry,
+        image_url: editImage,
+        description: editDescription,
+        custom_values: mergedValues,
+        status: 'active'
+      };
+
+      const res = await itemService.update(item.id, payload);
+      if (res.success) {
+        const updatedItem = res.data;
+        setItem(updatedItem);
+        setShowEditModal(false);
+        if (onUpdate) onUpdate(updatedItem);
+        alert(`✅ Rank #${updatedItem.rank} "${updatedItem.title}" updated successfully!`);
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update item.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   // Rank Badge Styles in Purple & Emerald
   const getRankBadgeStyle = (rank) => {
     if (rank === 1) return 'bg-gradient-to-r from-[#A78BFA] via-[#7C3AED] to-[#059669] text-white font-black shadow-regal-strong border-white';
@@ -57,14 +115,14 @@ const ItemCard = ({ item }) => {
   const officialWebsite = item.custom_values?.website || item.website || 'https://www.google.com';
 
   return (
-    <div className="hud-card rounded-3xl border border-[#7C3AED]/30 overflow-hidden flex flex-col justify-between hover:border-[#059669] transition-all duration-300 shadow-luxury-card hover:-translate-y-1 bg-white group">
+    <div className="hud-card rounded-3xl border border-[#7C3AED]/30 overflow-hidden flex flex-col justify-between hover:border-[#7C3AED] transition-all duration-300 shadow-luxury-card hover:-translate-y-1.5 bg-white group relative">
       
       {/* Visual Header / Cover Image */}
       <div className="relative h-64 overflow-hidden bg-gray-100">
         <img
           src={item.image_url || 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80'}
           alt={item.title}
-          className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/25" />
@@ -77,6 +135,18 @@ const ItemCard = ({ item }) => {
 
         {/* Action Badges on Cover */}
         <div className="absolute top-4 right-4 flex items-center space-x-2">
+          {/* Admin Live In-Place Edit Trigger */}
+          {isAdmin && (
+            <button
+              onClick={handleOpenEdit}
+              className="px-3 py-1.5 rounded-full bg-[#D4AF37] hover:bg-[#FFD700] text-black font-extrabold text-[11px] uppercase tracking-wider flex items-center space-x-1 shadow-gold-strong border border-white transition-all hover:scale-105"
+              title="Admin Quick Edit (Modify in Real-Time)"
+            >
+              <Edit3 className="w-3.5 h-3.5" />
+              <span>Edit</span>
+            </button>
+          )}
+
           {/* Compare Toggle */}
           <button
             onClick={handleCompareClick}
@@ -177,8 +247,136 @@ const ItemCard = ({ item }) => {
 
       </div>
 
+      {/* ================= IN-PLACE LIVE ADMIN EDIT MODAL ================= */}
+      {showEditModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="w-full max-w-xl glass-panel p-6 sm:p-8 rounded-3xl border border-[#D4AF37] shadow-gold-strong my-8 bg-[#0E0E12] text-left">
+            
+            <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
+              <div>
+                <span className="text-[10px] uppercase tracking-widest text-[#FFD700] font-black">ADMIN IN-PLACE LIVE EDITOR</span>
+                <h3 className="font-serif-luxury text-2xl font-bold text-white">
+                  Edit Rank #{item.rank} - {item.title}
+                </h3>
+              </div>
+              <button onClick={() => setShowEditModal(false)} className="text-gray-400 hover:text-white p-2">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveEdit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Rank # (1-100)</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="1000"
+                    required
+                    value={editRank}
+                    onChange={(e) => setEditRank(e.target.value)}
+                    className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white font-bold text-sm focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Country</label>
+                  <input
+                    type="text"
+                    value={editCountry}
+                    onChange={(e) => setEditCountry(e.target.value)}
+                    className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white text-sm focus:outline-none focus:border-[#D4AF37]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Item Title / Model</label>
+                <input
+                  type="text"
+                  required
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white text-sm focus:outline-none focus:border-[#D4AF37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Image URL</label>
+                <input
+                  type="text"
+                  value={editImage}
+                  onChange={(e) => setEditImage(e.target.value)}
+                  className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white text-xs font-mono focus:outline-none focus:border-[#D4AF37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Official Website Link</label>
+                <input
+                  type="url"
+                  value={editWebsite}
+                  onChange={(e) => setEditWebsite(e.target.value)}
+                  placeholder="https://..."
+                  className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white text-xs font-mono focus:outline-none focus:border-[#D4AF37]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-gray-400 font-bold mb-1">Description</label>
+                <textarea
+                  rows={2}
+                  value={editDescription}
+                  onChange={(e) => setEditDescription(e.target.value)}
+                  className="w-full px-3.5 py-2 rounded-xl bg-[#181818] border border-gray-800 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
+                />
+              </div>
+
+              {/* Dynamic Custom Specs */}
+              {Object.keys(editCustomValues).length > 0 && (
+                <div className="pt-2 border-t border-gray-800">
+                  <span className="text-[10px] uppercase tracking-wider text-[#FFD700] font-bold block mb-2">Specifications</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {Object.entries(editCustomValues).filter(([k]) => k !== 'website').map(([k, v]) => (
+                      <div key={k}>
+                        <label className="block text-[10px] text-gray-400 uppercase truncate mb-0.5">{k.replace(/_/g, ' ')}</label>
+                        <input
+                          type="text"
+                          value={v}
+                          onChange={(e) => setEditCustomValues({ ...editCustomValues, [k]: e.target.value })}
+                          className="w-full px-3 py-1.5 rounded-lg bg-[#141418] border border-gray-700 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-4 border-t border-gray-800 flex items-center justify-end space-x-3">
+                <button
+                  type="button"
+                  onClick={() => setShowEditModal(false)}
+                  className="px-4 py-2 rounded-xl border border-gray-700 text-gray-300 text-xs font-semibold"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-black font-extrabold text-xs uppercase tracking-wider shadow-gold-strong flex items-center space-x-1.5"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{saving ? 'Saving...' : 'Save & Update Item'}</span>
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
 
 export default ItemCard;
+

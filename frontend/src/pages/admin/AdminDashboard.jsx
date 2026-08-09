@@ -127,12 +127,13 @@ const AdminDashboard = () => {
             <div className="p-3 rounded-2xl bg-[#2E1065] text-[#DDD6FE] group-hover:scale-110 transition-transform">
               <Trophy className="w-6 h-6" />
             </div>
-            <h3 className="font-serif-luxury text-lg font-bold text-white group-hover:text-[#FFD700] transition-colors">Item Rankings Manager</h3>
+            <h3 className="font-serif-luxury text-lg font-bold text-white group-hover:text-[#FFD700] transition-colors">Visual Category & Item Editor</h3>
           </div>
           <p className="text-gray-400 text-xs leading-relaxed">
-            Filter by sector, search profiles, edit official ranks, update photos and links, or upload 100 items at once.
+            Inspect any of the 8 sectors with authentic public look, use Direct Rank Jump (#1 to #100, e.g. #58), and modify items in-place.
           </p>
         </Link>
+
 
         <Link to="/admin/settings" className="glass-panel p-6 rounded-3xl border border-gray-800 hover:border-[#D4AF37] transition-all group bg-[#101014]">
           <div className="flex items-center space-x-3 mb-3">

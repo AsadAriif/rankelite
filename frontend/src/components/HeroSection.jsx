@@ -114,21 +114,24 @@ const HeroSection = ({ onOpenSearch }) => {
   }, [reducedMotion]);
 
   return (
-    <div ref={heroRef} className="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F5F3FF] to-[#FAFAFC]">
+    <div ref={heroRef} className="relative pt-12 pb-24 overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F5F3FF] to-[#FAFAFC]">
       
-      {/* Royal Ambient Aura (Slow 1.05 -> 1.0 reveal, no continuous bouncing) */}
+      {/* Dual Royal Ambient Auroras */}
       <div
         ref={auraRef}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#7C3AED]/12 via-[#059669]/08 to-transparent rounded-full blur-3xl pointer-events-none"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] bg-gradient-to-tr from-[#7C3AED]/15 via-[#059669]/10 to-transparent rounded-full blur-3xl pointer-events-none animate-aurora"
+      />
+      <div
+        className="absolute top-1/2 left-1/3 -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent rounded-full blur-2xl pointer-events-none"
       />
 
       <div ref={contentRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
-        {/* VIP Registry Badge */}
-        <div ref={badgeRef} className="inline-flex items-center space-x-3 px-5 py-2 rounded-full glass-surface border border-[#7C3AED]/40 mb-8 shadow-luxury-soft">
-          <Crown className="w-4 h-4 text-[#7C3AED]" />
+        {/* VIP Registry Badge with Subtle Float & Gold Glow */}
+        <div ref={badgeRef} className="inline-flex items-center space-x-3 px-6 py-2 rounded-full glass-surface border border-[#7C3AED]/40 mb-8 shadow-luxury-soft animate-float glow-pulse-gold">
+          <Crown className="w-4 h-4 text-[#D4AF37]" />
           <span className="text-xs font-black uppercase tracking-[0.25em] text-[#4C1D95]">
-            2026 Complete 100-Tier Ranking Registry
+            2026 Complete 100-Tier Benchmark Registry
           </span>
         </div>
 
@@ -145,11 +148,11 @@ const HeroSection = ({ onOpenSearch }) => {
           Explore complete 100-tier verified records across 8 global sectors. From 100 smartphones and hypercars to European football powerhouses, universities, and official portals.
         </p>
 
-        {/* Instant Search Bar with Restrained Magnetic Action */}
+        {/* Instant Search Bar */}
         <div ref={searchBarRef} className="max-w-2xl mx-auto mb-16">
           <div
             onClick={onOpenSearch}
-            className="flex items-center p-2.5 rounded-3xl bg-white border-2 border-purple-200 shadow-luxury-card hover:border-[#7C3AED] cursor-pointer transition-colors duration-300 group"
+            className="flex items-center p-2.5 rounded-3xl bg-white border-2 border-purple-200 shadow-luxury-card hover:border-[#7C3AED] hover:shadow-purple-glow cursor-pointer transition-all duration-300 group"
           >
             <div className="flex items-center space-x-3.5 px-5 py-2 text-gray-500 flex-1">
               <Search className="w-5 h-5 text-[#7C3AED]" />
@@ -158,8 +161,8 @@ const HeroSection = ({ onOpenSearch }) => {
               </span>
             </div>
 
-            <MagneticButton strength={0.2}>
-              <button className="px-8 py-3.5 btn-purple-action btn-micro-engineered rounded-2xl text-xs uppercase tracking-wider flex items-center space-x-2 shadow-purple-glow">
+            <MagneticButton>
+              <button className="px-8 py-3.5 btn-purple-action rounded-2xl text-xs uppercase tracking-wider flex items-center space-x-2 shadow-purple-glow font-extrabold">
                 <span>Search 100</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
@@ -169,25 +172,25 @@ const HeroSection = ({ onOpenSearch }) => {
 
         {/* Live Counters Grid */}
         <div ref={countersRef} className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-5xl mx-auto">
-          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft">
+          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft hover:scale-[1.02] transition-transform">
             <Trophy className="w-7 h-7 text-[#7C3AED] mx-auto mb-2" />
             <div className="font-serif-luxury text-3xl sm:text-4xl font-black text-[#0A0A12]">{stats.items}+</div>
             <div className="text-[11px] uppercase tracking-widest text-[#4C1D95] font-extrabold mt-1">Verified Standings</div>
           </div>
 
-          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft">
+          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft hover:scale-[1.02] transition-transform">
             <Crown className="w-7 h-7 text-[#059669] mx-auto mb-2" />
             <div className="font-serif-luxury text-3xl sm:text-4xl font-black text-[#0A0A12]">{stats.categories} Sectors</div>
             <div className="text-[11px] uppercase tracking-widest text-[#064E3B] font-extrabold mt-1">Complete 100 Pools</div>
           </div>
 
-          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft">
+          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft hover:scale-[1.02] transition-transform">
             <Split className="w-7 h-7 text-[#7C3AED] mx-auto mb-2" />
             <div className="font-serif-luxury text-3xl sm:text-4xl font-black text-[#0A0A12]">Live Matrix</div>
             <div className="text-[11px] uppercase tracking-widest text-[#4C1D95] font-extrabold mt-1">Side-by-Side Model Diff</div>
           </div>
 
-          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft">
+          <div className="hud-card p-6 rounded-3xl text-center shadow-luxury-soft hover:scale-[1.02] transition-transform">
             <ShieldCheck className="w-7 h-7 text-[#059669] mx-auto mb-2" />
             <div className="font-serif-luxury text-3xl sm:text-4xl font-black text-[#0A0A12]">100% Links</div>
             <div className="text-[11px] uppercase tracking-widest text-[#064E3B] font-extrabold mt-1">Official Certified Portals</div>
@@ -196,6 +199,7 @@ const HeroSection = ({ onOpenSearch }) => {
 
       </div>
     </div>
+
   );
 };
 
