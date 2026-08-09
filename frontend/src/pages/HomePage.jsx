@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
 import ItemCard from '../components/ItemCard';
 import HeritageTimeline from '../components/HeritageTimeline';
-import HorizontalStory from '../components/HorizontalStory';
 import MagneticButton from '../components/MagneticButton';
 import TextReveal from '../components/TextReveal';
 import { GridSkeleton } from '../components/SkeletonLoader';
@@ -11,6 +10,7 @@ import { categoryService, itemService } from '../services/api';
 import { Crown, Sparkles, TrendingUp, ArrowRight, ShieldCheck, Split, Globe, CheckCircle2, ChevronRight, Star, Grid } from 'lucide-react';
 
 const HomePage = ({ onOpenSearch }) => {
+
   const [categories, setCategories] = useState([]);
   const [featuredItems, setFeaturedItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -166,11 +166,9 @@ const HomePage = ({ onOpenSearch }) => {
         </div>
       </section>
 
-      {/* Horizontal Story Showcase */}
-      <HorizontalStory />
-
       {/* ENTRANCE TYPE A: Comparison Matrix Teaser */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
         <div className="hud-card rounded-3xl p-8 sm:p-10 border-2 border-[#7C3AED]/40 bg-gradient-to-r from-[#F5F3FF] via-white to-[#ECFDF5] shadow-regal-strong">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 text-center md:text-left">

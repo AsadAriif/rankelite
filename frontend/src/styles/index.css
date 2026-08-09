@@ -232,14 +232,9 @@ h1, h2, h3, .font-serif-luxury {
   transform: scale(0.98);
 }
 
-/* Custom Luxury Pointer & Ring Cursor */
-@media (pointer: fine) {
-  body.has-custom-cursor,
-  body.has-custom-cursor a,
-  body.has-custom-cursor button,
-  body.has-custom-cursor [role="button"] {
-    cursor: none !important;
-  }
+/* Clean Native High-Precision Pointer & Hover Styling */
+a, button, [role="button"], input[type="button"], input[type="submit"], select, .tab-pill {
+  cursor: pointer;
 }
 
 /* Text Line Mask Wrapper */
@@ -262,19 +257,46 @@ h1, h2, h3, .font-serif-luxury {
 
 .cinematic-image-target {
   transform-origin: center center;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, filter, opacity;
 }
 
-/* Mobile Motion Strategy: Simplify & Remove Parallax/Cursor */
-@media (max-width: 768px) {
-  body.has-custom-cursor,
-  body.has-custom-cursor a,
-  body.has-custom-cursor button,
-  body.has-custom-cursor [role="button"] {
-    cursor: auto !important;
-  }
+/* Refined Clean Hover Transitions */
+.category-hero-block {
+  min-height: 260px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(76, 29, 149, 0.08);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
 
+.category-hero-block:hover {
+  border-color: #7C3AED;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.2), 0 4px 16px rgba(5, 150, 105, 0.08);
+}
+
+.hud-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hud-card:hover {
+  border-color: #7C3AED;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.18), 0 4px 12px rgba(6, 78, 59, 0.08);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
   .hud-card:hover {
     transform: none !important;
   }
@@ -283,6 +305,7 @@ h1, h2, h3, .font-serif-luxury {
     transform: none !important;
   }
 }
+
 
 /* Accessible Reduced Motion Fallbacks */
 @media (prefers-reduced-motion: reduce) {
